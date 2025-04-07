@@ -462,25 +462,64 @@ color: #fff;
 border: 2px solid #fff;
 }
 
-.c-logo-part{
-	background:#7cc576;
-	padding:25px 0;
-    filter: alpha(opacity=60);
+/*.c-logo-part{*/
+/*	background:#7cc576;*/
+/*	padding:25px 0;*/
+/*    filter: alpha(opacity=60);*/
+/*}*/
+/*.c-logo-part ul{*/
+/*	padding:0;*/
+/*	margin:0;*/
+/*	list-style:none;*/
+/*	text-align:center;*/
+/*}*/
+/*.c-logo-part ul li{*/
+/*	display:inline;*/
+/*	margin:0 25px;*/
+/*}*/
+/*.c-logo-part ul a{*/
+/*	display:inline-block;*/
+/*	margin: 0 20px;*/
+/*}*/
+
+.c-logo-part {
+	background: #7cc576;
+	padding: 25px 0;
 }
-.c-logo-part ul{
-	padding:0;
-	margin:0;
-	list-style:none;
-	text-align:center;
+
+.c-logo-part ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 24px; /* чуть меньше расстояние между логотипами */
 }
-.c-logo-part ul li{
-	display:inline;
-	margin:0 25px;
+
+.c-logo-part ul li {
+	flex: 0 1 auto;
 }
-.c-logo-part ul a{
-	display:inline-block;
-	margin: 0 20px;
+
+.c-logo-part ul a {
+	display: inline-block;
+	max-width: 120px; /* уменьшили с 150px до 120px */
+	width: 100%;
 }
+
+.c-logo-part ul a img {
+	width: 100%;
+	height: auto;
+	object-fit: contain;
+	display: block;
+	transition: transform 0.3s ease;
+}
+
+.c-logo-part ul a:hover img {
+	transform: scale(1.05);
+}
+
+
 .main-section.team{
 	padding:85px 0;
 }
