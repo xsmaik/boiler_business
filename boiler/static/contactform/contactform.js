@@ -94,24 +94,58 @@ jQuery(document).ready(function($) {
     if( ! action ) {
       action = 'contactform/contactform.php';
     }
-    $.ajax({
-      type: "POST",
-      url: action,
-      data: str,
-      success: function(msg) {
-        // alert(msg);
-        if (msg == 'OK') {
-          $("#sendmessage").addClass("show");
-          $("#errormessage").removeClass("show");
-          $('.contactForm').find("input, textarea").val("");
-        } else {
-          $("#sendmessage").removeClass("show");
-          $("#errormessage").addClass("show");
-          $('#errormessage').html(msg);
-        }
+    // $.ajax({
+    //   type: "POST",
+    //   url: action,
+    //   data: str,
+    //   success: function(msg) {
+    //     // alert(msg);
+    //     if (msg == 'OK') {
+    //       $("#sendmessage").addClass("show");
+    //       $("#errormessage").removeClass("show");
+    //       $('.contactForm').find("input, textarea").val("");
+    //     } else {
+    //       $("#sendmessage").removeClass("show");
+    //       $("#errormessage").addClass("show");
+    //       $('#errormessage').html(msg);
+    //     }
+    //
+    //   }
+    // });
 
-      }
-    });
+    // Собираем данные из формы
+var name = $("#name").val();
+var email = $("#email").val();
+var subject = $("#subject").val();
+var message = $("textarea[name='message']").val();
+
+// Формируем сообщение
+var telegramMessage =
+  "<b>📩 Новое сообщение с сайта</b>\n\n" +
+  "<b>👤 Имя:</b> " + name + "\n" +
+  "<b>📧 Email:</b> " + email + "\n" +
+  "<b>📝 Тема:</b> " + subject + "\n" +
+  "<b>💬 Сообщение:</b>\n" + message;
+
+// Отправка в Telegram
+$.ajax({
+  url: "https://api.telegram.org/bot7833910204:AAGamUBw7ujcgEV7LLq8Uxz555-8HR5ZICE/sendMessage", // <-- вставь свой токен
+  method: "POST",
+  data: {
+    chat_id: "919451469", // <-- твой chat_id
+    text: telegramMessage,
+    parse_mode: "HTML"
+  },
+  success: function(response) {
+    $("#sendmessage").addClass("show");
+    $("#errormessage").removeClass("show");
+    $('.contactForm').find("input, textarea").val("");
+  },
+  error: function(xhr, status, error) {
+    $("#sendmessage").removeClass("show");
+    $("#errormessage").addClass("show").html("Ошибка при отправке: " + error);
+  }
+});
     return false;
   });
 
