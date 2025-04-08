@@ -135,3 +135,18 @@ class Client(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class ContactForm(models.Model):
+    contact = models.CharField(max_length=20, verbose_name='Контакты')
+    hour = models.CharField(max_length=50, verbose_name='Время работы')
+    email = models.EmailField(max_length=255, verbose_name='EMAIL')
+    location = models.CharField(max_length=255, verbose_name='Локация', default="")
+
+    def __str__(self):
+        return self.contact
+
+
+
+

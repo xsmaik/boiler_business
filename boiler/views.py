@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Title, TitleSecondPage, Feature, Product, Section, PageBackground, ImageModel, SecondImageModel, Client
+from .models import Title, TitleSecondPage, Feature, Product, Section, PageBackground, ImageModel, SecondImageModel, Client, ContactForm
 
 
 # Create your views here.
@@ -24,6 +24,8 @@ def index(request):
 
     clients = Client.objects.all()
 
+    contacts = ContactForm.objects.first()
+
     context = {
         'title': title,
         'description': text_description,
@@ -44,6 +46,9 @@ def index(request):
         'second_images': second_images,
 
         'clients': clients,
+
+        'contacts': contacts,
+
     }
 
     return render(request, 'boiler/index.html', context)

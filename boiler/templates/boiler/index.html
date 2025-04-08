@@ -333,20 +333,20 @@
 			<div class="row">
 				<div class="col-lg-6 col-sm-7 wow fadeInLeft">
 					<div class="contact-info-box address clearfix">
-						<h3><i class=" icon-map-marker"></i>Address:</h3>
-						<span>308 Negra Arroyo Lane<br>Albuquerque, New Mexico, 87111.</span>
+						<h3><i class=" icon-map-marker"></i>Адрес</h3>
+						<span>{{ contacts.location }}</span>
 					</div>
 					<div class="contact-info-box phone clearfix">
-						<h3><i class="fa fa-phone"></i>Phone:</h3>
-						<span>1-800-BOO-YAHH</span>
+						<h3><i class="fa fa-phone"></i>Телефон</h3>
+						<span>{{ contacts.contact }}</span>
 					</div>
 					<div class="contact-info-box email clearfix">
-						<h3><i class="fa fa-pencil"></i>email:</h3>
-						<span>hello@knightstudios.com</span>
+						<h3><i class="fa fa-pencil"></i>email</h3>
+						<span>{{ contacts.email }}</span>
 					</div>
 					<div class="contact-info-box hours clearfix">
-						<h3><i class="fa fa-clock-o"></i>Hours:</h3>
-						<span><strong>Monday - Thursday:</strong> 10am - 6pm<br><strong>Friday:</strong> People work on Fridays now?<br><strong>Saturday - Sunday:</strong> Best not to ask.</span>
+						<h3><i class="fa fa-clock-o"></i>время</h3>
+						<span>{{ contacts.hour }}</span>
 					</div>
 					<ul class="social-link">
 						<li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -386,21 +386,7 @@
 			</div>
 		</section>
 	</div>
-	<footer class="footer">
-		<div class="container">
-			<div class="footer-logo"><a href="#"><img src="{% static 'img/footer-logo.png' %}" alt=""></a></div>
-			<span class="copyright">&copy; Knight Theme. All Rights Reserved</span>
-			<div class="credits">
-				<!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Knight
-        -->
-				Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-			</div>
-		</div>
-	</footer>
+
 
 
 	<script type="text/javascript">
