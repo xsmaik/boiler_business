@@ -19,8 +19,8 @@ class TitleSecondPage(models.Model):
     description_second = models.TextField(max_length=300, verbose_name='Описание', default="Нет описания")
 
     class Meta:
-        verbose_name = 'Тайтл-2'
-        verbose_name_plural = 'Тайтлы-2'  # Добавлено
+        verbose_name = 'Наша услуга'
+        verbose_name_plural = 'Наши услуги'  # Добавлено
 
     def __str__(self):
         return self.title_second
@@ -44,8 +44,8 @@ class Section(models.Model):
     fourth_description = models.TextField(max_length=300, verbose_name='Описание 4', default="Нет описания")
 
     class Meta:
-        verbose_name = 'Секция'
-        verbose_name_plural = 'Секции'
+        verbose_name = 'Наша услуга главная страница'
+        verbose_name_plural = 'Наши услуги главная страница'
 
     def __str__(self):
         return f"Секция с тайтлами: {self.first_title}, {self.second_title}, {self.third_title}, {self.fourth_title}"
@@ -72,8 +72,8 @@ class Product(models.Model):
     img = models.ImageField(default='no_image.png', upload_to='img/', verbose_name="Изображение")
 
     class Meta:
-        verbose_name = 'Продукт'
-        verbose_name_plural = 'Продукты'
+        verbose_name = 'Наш Котел'
+        verbose_name_plural = 'Наши Котлы'
 
 
     def __str__(self):
@@ -95,12 +95,20 @@ class Feature(models.Model):
     title4 = models.CharField(max_length=255, verbose_name="Заголовок 4 (h3)")
     description4 = models.TextField(verbose_name="Описание 4 (p)")
 
+    class Meta:
+        verbose_name = "Наша услуга 2-я страница"
+        verbose_name_plural = "Наши услуги 2-я страница"
+
     def __str__(self):
         return "Секция с заголовками"
 
 
 class PageBackground(models.Model):
     image = models.ImageField(upload_to='backgrounds/', verbose_name="Фон страницы")
+
+    class Meta:
+        verbose_name = "Изображение для главной страницы сайта"
+        verbose_name_plural = "Изображения для главной страницы сайта"
 
     def __str__(self):
         return f"Фон страницы {self.id}"
@@ -133,6 +141,10 @@ class Client(models.Model):
     logo = models.ImageField(upload_to='client_logos/')
     website = models.URLField(blank=True, null=True)
 
+    class Meta:
+        verbose_name = "Наш клиент"
+        verbose_name_plural = "Наши клиенты"
+
     def __str__(self):
         return self.name
 
@@ -144,9 +156,25 @@ class ContactForm(models.Model):
     email = models.EmailField(max_length=255, verbose_name='EMAIL')
     location = models.CharField(max_length=255, verbose_name='Локация', default="")
 
+    class Meta:
+        verbose_name = "Контактная форма"
+        verbose_name_plural = "Контактные формы"
+
     def __str__(self):
         return self.contact
 
 
+class Teammate(models.Model):
+    teammate_image = models.ImageField(upload_to='media/')
+    teammate_name = models.CharField(max_length=255)
+    teammate_description = models.CharField(max_length=255)
+    teammate_position = models.CharField(max_length=255, default="")
+
+    class Meta:
+        verbose_name = "Член команды"
+        verbose_name_plural = "Члены команды"
+
+    def __str__(self):
+        return self.teammate_image.name
 
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Title, TitleSecondPage, Section, Feature, Product, PageBackground, ImageModel, SecondImageModel, Client, ContactForm
+from .models import Title, TitleSecondPage, Section, Feature, Product, PageBackground, ImageModel, SecondImageModel, Client, ContactForm, Teammate
 
 # Register your models here.
 admin.site.register(Title)
@@ -12,3 +12,5 @@ admin.site.register(ImageModel)
 admin.site.register(SecondImageModel)
 admin.site.register(Client)
 admin.site.register(ContactForm)
+admin.site.register(Teammate)
+

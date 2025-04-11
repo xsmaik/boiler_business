@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Title, TitleSecondPage, Feature, Product, Section, PageBackground, ImageModel, SecondImageModel, Client, ContactForm
+from .models import Title, TitleSecondPage, Feature, Product, Section, PageBackground, ImageModel, SecondImageModel, Client, ContactForm, Teammate
 
 
 # Create your views here.
@@ -26,6 +26,8 @@ def index(request):
 
     contacts = ContactForm.objects.first()
 
+    teammates = Teammate.objects.all()
+
     context = {
         'title': title,
         'description': text_description,
@@ -48,6 +50,8 @@ def index(request):
         'clients': clients,
 
         'contacts': contacts,
+
+        'teammates': teammates,
 
     }
 

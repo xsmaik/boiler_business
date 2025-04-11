@@ -18,6 +18,7 @@
 	</style>
     <meta charset="UTF-8">
     <title>Кыргыз котёл</title>
+	<link rel="shortcut icon" href="static/img/logo.png" type="image/x-icon">
     {% load static %}
 
   	<link rel="icon" href="{% static 'favicon.png' %}" type="image/png">
@@ -198,26 +199,34 @@
 			{% for post in product %}
 				{% if post.availability %}
 					{% if post.group == '1 вид' %}
-						<div class=" Portfolio-box printdesign">
-							<a href="img/Portfolio-pic1.jpg"><img src="{{ post.img.url }}" alt=""></a>
+						<div class="Portfolio-box printdesign">
+							<a href="{{ post.img.url }}" target="_blank">
+								<img src="{{ post.img.url }}" alt="">
+							</a>
 							<h3>{{ post.name }}</h3>
 							<p>Цена: {{ post.price }}</p>
 						</div>
 					{% elif post.group == '2 вид' %}
 						<div class="Portfolio-box webdesign">
-							<a href="img/Portfolio-pic2.jpg"><img src="{{ post.img.url }}" alt=""></a>
+							<a href="{{ post.img.url }}" target="_blank">
+								<img src="{{ post.img.url }}" alt="">
+							</a>
 							<h3>{{ post.name }}</h3>
 							<p>Цена: {{ post.price }}</p>
 						</div>
 					{% elif post.group == '3 вид' %}
-						<div class=" Portfolio-box branding">
-							<a href="img/Portfolio-pic3.jpg"><img src="{{ post.img.url }}" alt=""></a>
+						<div class="Portfolio-box branding">
+							<a href="{{ post.img.url }}" target="_blank">
+								<img src="{{ post.img.url }}" alt="">
+							</a>
 							<h3>{{ post.name }}</h3>
 							<p>Цена: {{ post.price }}</p>
 						</div>
 					{% else %}
-						<div class=" Portfolio-box photography">
-							<a href="img/Portfolio-pic4.jpg"><img src="{{ post.img.url }}" alt=""></a>
+						<div class="Portfolio-box photography">
+							<a href="{{ post.img.url }}" target="_blank">
+								<img src="{{ post.img.url }}" alt="">
+							</a>
 							<h3>{{ post.name }}</h3>
 							<p>Цена: {{ post.price }}</p>
 						</div>
@@ -225,6 +234,7 @@
 				{% endif %}
 			{% endfor %}
 		</div>
+
 	</section>
 	<!--main-section-end-->
 
@@ -232,16 +242,15 @@
 	<section class="main-section client-part" id="client">
 		<!--main-section client-part-start-->
 		<div class="container">
-			<b class="quote-right wow fadeInDown delay-03"><i class="fa fa-quote-right"></i></b>
 			<div class="row">
 				<div class="col-lg-12">
-					<p class="client-part-haead wow fadeInDown delay-05">add information</p>
+					<p class="client-part-haead wow fadeInDown delay-05">Наши клиенты с которыми мы сотрудничаем</p>
 				</div>
 			</div>
 			<ul class="client wow fadeIn delay-05s">
 				<li><a href="#">
-                <h3>///</h3>
-                <span>Описание</span>
+<!--                <h3>///</h3>-->
+<!--                <span>Описание</span>-->
             </a></li>
 			</ul>
 		</div>
@@ -268,51 +277,17 @@
 			<h2>Наша команда</h2>
 			<h6></h6>
 			<div class="team-leader-block clearfix">
+				{% for person in teammates %}
 				<div class="team-leader-box">
-					<div class="team-leader wow fadeInDown delay-03s">
+					<div class="team-leader wow fadeInDown delay-0{{ forloop.counter }}s">
 						<div class="team-leader-shadow"><a href="#"></a></div>
-						<img src="{% static 'img/team-leader-pic1.jpg' %}" alt="">
-						<ul>
-							<li><a href="#" class="fa fa-twitter"></a></li>
-							<li><a href="#" class="fa fa-facebook"></a></li>
-							<li><a href="#" class="fa fa-pinterest"></a></li>
-							<li><a href="#" class="fa fa-google-plus"></a></li>
-						</ul>
+						<img src="{{ person.teammate_image.url }}" alt="{{ person.teammate_name }}">
 					</div>
-					<h3 class="wow fadeInDown delay-03s">Walter White</h3>
-					<span class="wow fadeInDown delay-03s">Chief Executive Officer</span>
-					<p class="wow fadeInDown delay-03s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
+					<h3 class="wow fadeInDown delay-0{{ forloop.counter }}s">{{ person.teammate_name }}</h3>
+					<span class="wow fadeInDown delay-0{{ forloop.counter }}s">{{ person.teammate_position }}</span>
+					<p class="wow fadeInDown delay-0{{ forloop.counter }}s">{{ person.teammate_description }}</p>
 				</div>
-				<div class="team-leader-box">
-					<div class="team-leader  wow fadeInDown delay-06s">
-						<div class="team-leader-shadow"><a href="#"></a></div>
-						<img src="{% static 'img/team-leader-pic2.jpg' %}" alt="">
-						<ul>
-							<li><a href="#" class="fa fa-twitter"></a></li>
-							<li><a href="#" class="fa fa-facebook"></a></li>
-							<li><a href="#" class="fa fa-pinterest"></a></li>
-							<li><a href="#" class="fa fa-google-plus"></a></li>
-						</ul>
-					</div>
-					<h3 class="wow fadeInDown delay-06s">Jesse Pinkman</h3>
-					<span class="wow fadeInDown delay-06s">Product Manager</span>
-					<p class="wow fadeInDown delay-06s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
-				</div>
-				<div class="team-leader-box">
-					<div class="team-leader wow fadeInDown delay-09s">
-						<div class="team-leader-shadow"><a href="#"></a></div>
-						<img src="{% static 'img/team-leader-pic3.jpg' %}" alt="">
-						<ul>
-							<li><a href="#" class="fa fa-twitter"></a></li>
-							<li><a href="#" class="fa fa-facebook"></a></li>
-							<li><a href="#" class="fa fa-pinterest"></a></li>
-							<li><a href="#" class="fa fa-google-plus"></a></li>
-						</ul>
-					</div>
-					<h3 class="wow fadeInDown delay-09s">Skyler white</h3>
-					<span class="wow fadeInDown delay-09s">Accountant</span>
-					<p class="wow fadeInDown delay-09s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
-				</div>
+				{% endfor %}
 			</div>
 		</div>
 	</section>
@@ -333,7 +308,7 @@
 			<div class="row">
 				<div class="col-lg-6 col-sm-7 wow fadeInLeft">
 					<div class="contact-info-box address clearfix">
-						<h3><i class=" icon-map-marker"></i>Адрес</h3>
+						<h3><i class="fa fa-map-marker"></i>Адрес</h3>
 						<span>{{ contacts.location }}</span>
 					</div>
 					<div class="contact-info-box phone clearfix">
