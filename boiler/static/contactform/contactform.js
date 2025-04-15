@@ -114,37 +114,31 @@ jQuery(document).ready(function($) {
     // });
 
     // Собираем данные из формы
-var name = $("#name").val();
-var email = $("#email").val();
-var subject = $("#subject").val();
-var message = $("textarea[name='message']").val();
+$.getJSON('/api/chat-ids/', function(chat_ids) {
+  const telegramMessage =
+    "<b>📩 Новое сообщение с сайта</b>\n\n" +
+    "<b>👤 Имя:</b> " + $("#name").val() + "\n" +
+    "<b>📧 Email:</b> " + $("#email").val() + "\n" +
+    "<b>📝 Тема:</b> " + $("#subject").val() + "\n" +
+    "<b>💬 Сообщение:</b>\n" + $("textarea[name='message']").val();
 
-// Формируем сообщение
-var telegramMessage =
-  "<b>📩 Новое сообщение с сайта</b>\n\n" +
-  "<b>👤 Имя:</b> " + name + "\n" +
-  "<b>📧 Email:</b> " + email + "\n" +
-  "<b>📝 Тема:</b> " + subject + "\n" +
-  "<b>💬 Сообщение:</b>\n" + message;
-
-// Отправка в Telegram
-$.ajax({
-  url: "https://api.telegram.org/bot7833910204:AAGamUBw7ujcgEV7LLq8Uxz555-8HR5ZICE/sendMessage", // <-- вставь свой токен
-  method: "POST",
-  data: {
-    chat_id: "919451469", // <-- твой chat_id
-    text: telegramMessage,
-    parse_mode: "HTML"
-  },
-  success: function(response) {
-    $("#sendmessage").addClass("show");
-    $("#errormessage").removeClass("show");
-    $('.contactForm').find("input, textarea").val("");
-  },
-  error: function(xhr, status, error) {
-    $("#sendmessage").removeClass("show");
-    $("#errormessage").addClass("show").html("Ошибка при отправке: " + error);
-  }
+  chat_ids.forEach(chat_id => {
+    $.ajax({
+      url: "https://api.telegram.org/bot7833910204:AAGamUBw7ujcgEV7LLq8Uxz555-8HR5ZICE/sendMessage",
+      method: "POST",
+      data: {
+        chat_id: chat_id,
+        text: telegramMessage,
+        parse_mode: "HTML"
+      },
+      success: function() {
+        console.log(`✅ Отправлено в ${chat_id}`);
+      },
+      error: function(_, __, error) {
+        console.error(`❌ Ошибка отправки в ${chat_id}: ${error}`);
+      }
+    });
+  });
 });
     return false;
   });
