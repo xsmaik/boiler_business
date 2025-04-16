@@ -119,8 +119,8 @@ $.getJSON('/api/chat-ids/', function(chat_ids) {
     "<b>📩 Новое сообщение с сайта</b>\n\n" +
     "<b>👤 Имя:</b> " + $("#name").val() + "\n" +
     "<b>📧 Email:</b> " + $("#email").val() + "\n" +
-    "<b>📝 Тема:</b> " + $("#subject").val() + "\n" +
-    "<b>💬 Сообщение:</b>\n" + $("textarea[name='message']").val();
+    "<b>📝 Номер:</b> " + $("#subject").val() + "\n" +
+    "<b>💬 Сообщение:</b>\n" + $("textarea[name='Message']").val();
 
   chat_ids.forEach(chat_id => {
     $.ajax({
@@ -133,6 +133,8 @@ $.getJSON('/api/chat-ids/', function(chat_ids) {
       },
       success: function() {
         console.log(`✅ Отправлено в ${chat_id}`);
+        $("#sendmessage").fadeIn().delay(4000).fadeOut(); // показываем сообщение об успехе
+        $(".contactForm")[0].reset(); // очищаем форму (по желанию)
       },
       error: function(_, __, error) {
         console.error(`❌ Ошибка отправки в ${chat_id}: ${error}`);
