@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from .models import Title, TitleSecondPage, Feature, Product, Section, PageBackground, ImageModel, SecondImageModel, Client, ContactForm, Teammate
+from .models import (Title, TitleSecondPage, Feature, Product, Section, PageBackground, ImageModel,
+                     SecondImageModel, Client, ContactForm, TelegramUser)
+from .models import Title, TitleSecondPage, Feature, Product, Section, PageBackground, ImageModel, SecondImageModel, Client, ContactForm, Teammate, TelegramUser
 
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request):
@@ -56,3 +59,9 @@ def index(request):
     }
 
     return render(request, 'boiler/index.html', context)
+
+def chat_ids_api(request):
+    chat_ids = list(TelegramUser.objects.values_list('chat_id', flat=True))
+    return JsonResponse(chat_ids, safe=False)
+
+

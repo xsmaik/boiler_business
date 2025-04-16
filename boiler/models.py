@@ -176,5 +176,25 @@ class Teammate(models.Model):
 
     def __str__(self):
         return self.teammate_image.name
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Имя")
+    email = models.EmailField(verbose_name="Email")
+    message = models.TextField(verbose_name="Сообщение")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
+    def __str__(self):
+        return f"Сообщение от {self.name}"
+
+
+class TelegramUser(models.Model):
+    chat_id = models.CharField(max_length=255, unique=True)
+    username = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        db_table = "telegram_users"
+        verbose_name = "telegram_user"
+        verbose_name_plural = "telegram_users"
+
+    def __str__(self):
+        return self.username
 
