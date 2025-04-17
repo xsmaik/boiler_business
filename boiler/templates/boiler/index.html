@@ -1,21 +1,23 @@
  <!DOCTYPE html>
 <html lang="en">
 <head>
-	<style>
-		.header {
-			text-align: center;
-			background: url('{{ background.image.url }}') no-repeat center center;
-			background-size: cover; /* Заполняет весь экран */
-			background-attachment: fixed; /* Фиксирует фон при прокрутке */
-			width: 100vw; /* 100% ширины экрана */
-			height: 100vh; /* 100% высоты экрана */
-			margin: 0;
-			padding: 0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-	</style>
+	{% if main_bg %}
+		<style>
+			.header {
+				text-align: center;
+				background: url('{{ main_bg.image.url }}') no-repeat center center;
+				background-size: cover;
+				background-attachment: fixed;
+				width: 100vw;
+				height: 100vh;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		</style>
+	{% endif %}
     <meta charset="UTF-8">
     <title>Кыргыз котёл</title>
 	<link rel="shortcut icon" href="static/img/logo.png" type="image/x-icon">
@@ -124,11 +126,11 @@
 							{% endfor %}
 						</div>
 					</div>
-					{% for img in images %}
 						<figure class="col-lg-8 col-sm-6 text-right wow fadeInUp delay-02s">
-							<img src="{{ img.image.url }}" alt="">
+							{% if upload_img %}
+								<img src="{{ upload_img.image.url }}" alt="Картинка">
+							{% endif %}
 						</figure>
-					{% endfor %}
 				</div>
 			</div>
 		{% endfor %}
@@ -141,11 +143,11 @@
 		<!--main-section alabaster-start-->
 		<div class="container">
 			<div class="row">
-				{% for image in second_images %}
-					<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
-						<img src="{{ image.second_image.url }}" alt="">
-					</figure>
-				{% endfor %}
+				<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
+					{% if second_bg %}
+						<img src="{{ second_bg.image.url }}" alt="Картинка 3">
+					{% endif %}
+				</figure>
 				<div class="col-lg-7 col-sm-8 featured-work">
 					<h2>{{ feature.title1 }}</h2>
 					<p class="padding-b">{{ feature.description1 }}</p>
@@ -187,10 +189,10 @@
 			<div class="portfolioFilter">
 				<ul class="Portfolio-nav wow fadeIn delay-02s">
 					<li><a href="#" data-filter="*" class="current">Все виды котлов</a></li>
-					<li><a href="#" data-filter=".branding">Вид 1</a></li>
-					<li><a href="#" data-filter=".webdesign">Вид 2</a></li>
-					<li><a href="#" data-filter=".printdesign">Вид 3</a></li>
-					<li><a href="#" data-filter=".photography">Вид 4</a></li>
+					<li><a href="#" data-filter=".branding">твердотопливные</a></li>
+					<li><a href="#" data-filter=".webdesign">газовые</a></li>
+					<li><a href="#" data-filter=".printdesign">электрические</a></li>
+					<li><a href="#" data-filter=".photography">комбинированные</a></li>
 				</ul>
 			</div>
 
@@ -198,15 +200,15 @@
 		<div class="portfolioContainer wow fadeInUp delay-04s">
 			{% for post in product %}
 				{% if post.availability %}
-					{% if post.group == '1 вид' %}
-						<div class="Portfolio-box printdesign">
+					{% if post.group == 'твердотопливные' %}
+						<div class="Portfolio-box branding">
 							<a href="{{ post.img.url }}" target="_blank">
 								<img src="{{ post.img.url }}" alt="">
 							</a>
 							<h3>{{ post.name }}</h3>
 							<p>Цена: {{ post.price }}</p>
 						</div>
-					{% elif post.group == '2 вид' %}
+					{% elif post.group == 'газовые' %}
 						<div class="Portfolio-box webdesign">
 							<a href="{{ post.img.url }}" target="_blank">
 								<img src="{{ post.img.url }}" alt="">
@@ -214,8 +216,8 @@
 							<h3>{{ post.name }}</h3>
 							<p>Цена: {{ post.price }}</p>
 						</div>
-					{% elif post.group == '3 вид' %}
-						<div class="Portfolio-box branding">
+					{% elif post.group == 'электрические' %}
+						<div class="Portfolio-box printdesign">
 							<a href="{{ post.img.url }}" target="_blank">
 								<img src="{{ post.img.url }}" alt="">
 							</a>

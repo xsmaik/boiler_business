@@ -7,8 +7,8 @@ class Title(models.Model):
     description = models.TextField(max_length=300, verbose_name='Описание', default="Нет описания")
 
     class Meta:
-        verbose_name = 'Тайтл'
-        verbose_name_plural = 'Тайтлы'  # Добавлено
+        verbose_name = 'Описание главной страницы'
+        verbose_name_plural = 'Описания главной страницы'
 
     def __str__(self):
         return self.title
@@ -52,16 +52,16 @@ class Section(models.Model):
 
 
 class Product(models.Model):
-    FIRST = '1 вид'
-    SECOND = '2 вид'
-    THIRD = '3 вид'
-    FOURTH = '4 вид'
+    FIRST = 'твердотопливные'
+    SECOND = 'газовые'
+    THIRD = 'электрические'
+    FOURTH = 'комбинированные'
 
     CHOICE_GROUP = [
-        (FIRST, '1 вид'),
-        (SECOND, '2 вид'),
-        (THIRD, '3 вид'),
-        (FOURTH, '4 вид'),
+        (FIRST, 'твердотопливные'),
+        (SECOND, 'газовые'),
+        (THIRD, 'электрические'),
+        (FOURTH, 'комбинированные'),
     ]
 
     name = models.CharField(max_length=100, verbose_name="Название")
@@ -103,37 +103,25 @@ class Feature(models.Model):
         return "Секция с заголовками"
 
 
-class PageBackground(models.Model):
-    image = models.ImageField(upload_to='backgrounds/', verbose_name="Фон страницы")
+from django.db import models
+
+class UnifiedImage(models.Model):
+    IMAGE_TYPE_CHOICES = [
+        ('main_bg', 'Фон главной страницы'),
+        ('upload', 'Просто изображение'),
+        ('second_bg', 'Фон следующей страницы'),
+    ]
+
+    image = models.ImageField(upload_to='unified_images/', verbose_name="Изображение")
+    image_type = models.CharField(max_length=20, choices=IMAGE_TYPE_CHOICES, verbose_name="Тип изображения")
 
     class Meta:
-        verbose_name = "Изображение для главной страницы сайта"
-        verbose_name_plural = "Изображения для главной страницы сайта"
+        verbose_name = "Объединённое изображение"
+        verbose_name_plural = "Объединённые изображения"
 
     def __str__(self):
-        return f"Фон страницы {self.id}"
+        return f"{self.get_image_type_display()} ({self.id})"
 
-
-class ImageModel(models.Model):
-    image = models.ImageField(upload_to='uploads/', verbose_name="Изображение")
-
-    class Meta:
-        verbose_name = "Изображение"
-        verbose_name_plural = "Изображения"
-
-    def __str__(self):
-        return self.image.name
-
-
-class SecondImageModel(models.Model):
-    second_image = models.ImageField(upload_to='backgrounds/', verbose_name="Изображение")
-
-    class Meta:
-        verbose_name = "Изображение для следующей страницы"
-        verbose_name_plural = "Изображения для следующей страницы"
-
-    def __str__(self):
-        return self.second_image.name
 
 
 class Client(models.Model):
@@ -176,6 +164,8 @@ class Teammate(models.Model):
 
     def __str__(self):
         return self.teammate_image.name
+
+
 class ContactMessage(models.Model):
     name = models.CharField(max_length=255, verbose_name="Имя")
     email = models.EmailField(verbose_name="Email")
@@ -192,8 +182,8 @@ class TelegramUser(models.Model):
 
     class Meta:
         db_table = "telegram_users"
-        verbose_name = "telegram_user"
-        verbose_name_plural = "telegram_users"
+        verbose_name = "телеграм_бот"
+        verbose_name_plural = "телеграм_боты"
 
     def __str__(self):
         return self.username
