@@ -12,5 +12,4 @@ media
 media/*
 img
 sqlite3
-
 db.sqlite3
