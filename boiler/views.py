@@ -45,7 +45,7 @@ def index(request):
         'teammates': teammates,
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'boiler/index.html', context)
 
 def chat_ids_api(request):
     chat_ids = list(TelegramUser.objects.values_list('chat_id', flat=True))
