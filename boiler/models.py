@@ -112,7 +112,7 @@ class UnifiedImage(models.Model):
         ('second_bg', 'Фон следующей страницы'),
     ]
 
-    image = models.ImageField(upload_to='media/', verbose_name="Изображение")
+    image = models.ImageField(upload_to='', verbose_name="Изображение")
     image_type = models.CharField(max_length=20, choices=IMAGE_TYPE_CHOICES, verbose_name="Тип изображения")
 
     class Meta:
