@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://178.217.173.162:8010/",
+    "https://178.217.173.162:8010/",
+    "http://kyrgyzkotel.kg/",
+    "https://kyrgyzkotel.kg/",
+]
+
 
 # Application definition
 
