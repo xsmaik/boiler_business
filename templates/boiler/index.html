@@ -209,7 +209,7 @@
 							<h3>{{ post.name }}</h3>
 							<p>Цена: {{ post.price }}</p>
 						</div>
-					{% if post.group == 'твердотопливные' %}
+					{% elif post.group == 'твердотопливные' %}
 						<div class="Portfolio-box branding">
 							<a href="{{ post.img.url }}" target="_blank">
 								<img src="{{ post.img.url }}" alt="">
