@@ -53,15 +53,17 @@ class Section(models.Model):
 
 class Product(models.Model):
     FIRST = 'твердотопливные'
-    SECOND = 'газовые'
-    THIRD = 'электрические'
-    FOURTH = 'комбинированные'
+    SECOND = 'банный'
+    THIRD = 'парогенератор'
+    FOURTH = 'расширительный бак'
+    FIFTH = 'дымоход'
 
     CHOICE_GROUP = [
         (FIRST, 'твердотопливные'),
-        (SECOND, 'газовые'),
-        (THIRD, 'электрические'),
-        (FOURTH, 'комбинированные'),
+        (SECOND, 'банный'),
+        (THIRD, 'парогенератор'),
+        (FOURTH, 'расширительный бак'),
+        (FIFTH, 'дымоход'),
     ]
 
     name = models.CharField(max_length=100, verbose_name="Название")

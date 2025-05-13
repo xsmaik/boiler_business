@@ -190,9 +190,10 @@
 				<ul class="Portfolio-nav wow fadeIn delay-02s">
 					<li><a href="#" data-filter="*" class="current">Все виды котлов</a></li>
 					<li><a href="#" data-filter=".branding">твердотопливные</a></li>
-					<li><a href="#" data-filter=".webdesign">газовые</a></li>
-					<li><a href="#" data-filter=".printdesign">электрические</a></li>
-					<li><a href="#" data-filter=".photography">комбинированные</a></li>
+					<li><a href="#" data-filter=".webdesign">банный</a></li>
+					<li><a href="#" data-filter=".printdesign">парогенератор</a></li>
+					<li><a href="#" data-filter=".photography">расширительный бак</a></li>
+					<li><a href="#" data-filter="chimney">дымоход</a></li>
 				</ul>
 			</div>
 
@@ -200,6 +201,14 @@
 		<div class="portfolioContainer wow fadeInUp delay-04s">
 			{% for post in product %}
 				{% if post.availability %}
+					{% if post.group == 'дымоход' %}
+						<div class="Portfolio-box chimney">
+							<a href="{{ post.img.url }}" target="_blank">
+								<img src="{{ post.img.url }}" alt="">
+							</a>
+							<h3>{{ post.name }}</h3>
+							<p>Цена: {{ post.price }}</p>
+						</div>
 					{% if post.group == 'твердотопливные' %}
 						<div class="Portfolio-box branding">
 							<a href="{{ post.img.url }}" target="_blank">
@@ -208,7 +217,7 @@
 							<h3>{{ post.name }}</h3>
 							<p>Цена: {{ post.price }}</p>
 						</div>
-					{% elif post.group == 'газовые' %}
+					{% elif post.group == 'банный' %}
 						<div class="Portfolio-box webdesign">
 							<a href="{{ post.img.url }}" target="_blank">
 								<img src="{{ post.img.url }}" alt="">
@@ -216,7 +225,7 @@
 							<h3>{{ post.name }}</h3>
 							<p>Цена: {{ post.price }}</p>
 						</div>
-					{% elif post.group == 'электрические' %}
+					{% elif post.group == 'парогенератор' %}
 						<div class="Portfolio-box printdesign">
 							<a href="{{ post.img.url }}" target="_blank">
 								<img src="{{ post.img.url }}" alt="">
